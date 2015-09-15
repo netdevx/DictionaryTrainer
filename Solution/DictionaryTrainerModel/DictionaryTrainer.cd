@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access">
+  <Class Name="AnSoft.DictionaryTrainerModel.LearningSession">
+    <Position X="2.75" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Private" Collapsed="true" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="AnSoft.DictionaryTrainerModel.LearningSession.NextResult" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>LearningSession.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AgAAAAACAAAACAAAQAAAAAAAIABQAAEAQAAACAAAAAA=</HashCode>
+      <FileName>LearningSession.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnSoft.DictionaryTrainerModel.LearningWord">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <AssociationLine Name="Word" Type="AnSoft.DictionaryTrainerModel.Word" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.75" Y="1.347" />
+        <Point X="8.219" Y="1.347" />
+        <Point X="8.219" Y="1.75" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAgAEAAAAAAAgAAAAA=</HashCode>
+      <FileName>LearningWord.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Word" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="AnSoft.DictionaryTrainerModel.ScheduleBuilder">
+    <Position X="12" Y="4" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Private" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>ScheduleBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnSoft.DictionaryTrainerModel.ScheduleItem">
+    <Position X="7.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAIAAAAAAAAAAAAAgAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>ScheduleItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnSoft.DictionaryTrainerModel.Trainer">
+    <Position X="0.5" Y="1.25" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Private" Collapsed="true" />
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="AnSoft.DictionaryTrainerModel.Trainer.Mode">
+        <TypeIdentifier>
+          <NewMemberFileName>Trainer.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACCBAgAAAAAAAAAAAAAAQAAAAQAAAACAAAAA=</HashCode>
+      <FileName>Trainer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnSoft.DictionaryTrainerModel.Word">
+    <Position X="8" Y="1.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAABgACAAAgAQCyABAAEAAAAAAAIAAAAABAIAAIBA=</HashCode>
+      <FileName>Word.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Language" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Translations" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.617" />
+  </Class>
+  <Class Name="AnSoft.DictionaryTrainerModel.WordResult">
+    <Position X="4.5" Y="5.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>WordResult.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Word" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="LearningSchedule" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="AnSoft.DictionaryTrainerModel.WordSessionProvider">
+    <Position X="9.5" Y="4.25" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Private" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAABAAAAAAAACAQAAAAAQAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>WordSessionProvider.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="AnSoft.DictionaryTrainerModel.IWordStorage">
+    <Position X="0.5" Y="7.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>IWordStorage.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AnSoft.DictionaryTrainerModel.IStorage&lt;T&gt;">
+    <Position X="0.5" Y="5.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAgAAAAAAAAAAAAAAAAAAAAAAAQAAEAAAAAA=</HashCode>
+      <FileName>IStorage.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="AnSoft.DictionaryTrainerModel.Language">
+    <Position X="12" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAI=</HashCode>
+      <FileName>Language.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

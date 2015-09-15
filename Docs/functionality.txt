@@ -1,0 +1,5 @@
+1. Repetitions schedule
+2. Words storage
+3. Phrases with word
+4. Learning statistics
+5. 
