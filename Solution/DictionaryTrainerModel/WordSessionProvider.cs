@@ -11,13 +11,13 @@ namespace AnSoft.DictionaryTrainer.Model
         private const int cnstSessionWordCount = 15;
         private const int cnstAddedWordCount = 7;
 
-        public IWordStorage wordStorage { get; protected set; }
-        public IStorage<WordResult> wordResultStorage { get; set; }
+        protected IWordStorage WordStorage { get; set; }
+        protected IStorage<WordResult> WordResultStorage { get; set; }
 
         public WordSessionProvider(IWordStorage wordStorage, IStorage<WordResult> wordResultStorage)
         {
-            this.wordStorage = wordStorage;
-            this.wordResultStorage = wordResultStorage;
+            this.WordStorage = wordStorage;
+            this.WordResultStorage = wordResultStorage;
         }
 
         public IEnumerable<Word> GetNextWords(Language language)
@@ -27,8 +27,8 @@ namespace AnSoft.DictionaryTrainer.Model
             //            from res in gl.DefaultIfEmpty()
             //            select new { Word = w, WordResult = (res == null ? null : res) };
 
-            var list = wordStorage.GetWordsByLanguage(language)
-                .GroupJoin(wordResultStorage.AllList, w => w.ID, wr => wr.Word.ID, (w, wrs) => new { Word = w, WordResults = wrs.DefaultIfEmpty() })
+            var list = WordStorage.GetWordsByLanguage(language)
+                .GroupJoin(WordResultStorage.AllList, w => w.ID, wr => wr.Word.ID, (w, wrs) => new { Word = w, WordResults = wrs.DefaultIfEmpty() })
                 .SelectMany(i => i.WordResults, (i, l) => new { Word = i.Word, WordResult = l })
                 .Where(i => i.WordResult == null);
 
@@ -42,7 +42,7 @@ namespace AnSoft.DictionaryTrainer.Model
 
         public IEnumerable<Word> GetWordsToRepeat(Language language)
         {
-            var list = this.wordResultStorage.AllList.Where(wr => wr.LearningSchedule.Any(i => !i.IsShown && i.DateToShow <= DateTime.Now)).Select(wr => wr.Word);
+            var list = this.WordResultStorage.AllList.Where(wr => wr.LearningSchedule.Any(i => !i.IsShown && i.DateToShow <= DateTime.Now)).Select(wr => wr.Word);
             
             return list;
         }
