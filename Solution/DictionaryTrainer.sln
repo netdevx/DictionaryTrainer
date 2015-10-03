@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinTrainer", "WinTrainer\Wi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainerVM", "TrainerVM\TrainerVM.csproj", "{59079F53-9776-4D46-81FE-44415628519A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DictionaryTrainerModel.Tests", "DictionaryTrainerModel.Tests\DictionaryTrainerModel.Tests.csproj", "{2DCBFA0B-ECCC-43AC-B981-014C67785526}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{59079F53-9776-4D46-81FE-44415628519A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59079F53-9776-4D46-81FE-44415628519A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59079F53-9776-4D46-81FE-44415628519A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DCBFA0B-ECCC-43AC-B981-014C67785526}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DCBFA0B-ECCC-43AC-B981-014C67785526}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DCBFA0B-ECCC-43AC-B981-014C67785526}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DCBFA0B-ECCC-43AC-B981-014C67785526}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
