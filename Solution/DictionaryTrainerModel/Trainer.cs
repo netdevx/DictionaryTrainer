@@ -10,12 +10,16 @@ namespace AnSoft.DictionaryTrainer.Model
     {
         private IWordStorage wordStorage;
         private IStorage<WordResult> wordResultStorage;
+        private IWordSessionProvider wordSessionProvider;
+        private IScheduleBuilder scheduleBuilder;
 
-        public Trainer(IWordStorage wordStorage, IStorage<WordResult> wordResultStorage, Language language)
+        public Trainer(IWordStorage wordStorage, IStorage<WordResult> wordResultStorage, Language language, IWordSessionProvider wordSessionProvider, IScheduleBuilder scheduleBuilder)
         {
             this.wordStorage = wordStorage;
             this.wordResultStorage = wordResultStorage;
             this.Language = language;
+            this.wordSessionProvider = wordSessionProvider;
+            this.scheduleBuilder = scheduleBuilder;
         }
 
         public Language Language { get; set; }
@@ -29,8 +33,7 @@ namespace AnSoft.DictionaryTrainer.Model
 
         public LearningSession StartNewLearning()
         {
-            var provider = new WordSessionProvider(this.wordStorage, this.wordResultStorage);
-            var session = new LearningSession(provider.GetNextWords(this.Language), this.wordStorage);
+            var session = new LearningSession(wordSessionProvider.GetNextWords(this.Language), this.wordStorage);
             session.OnFinishHandler += UpdateSchedule;
 
             return session;
@@ -38,17 +41,14 @@ namespace AnSoft.DictionaryTrainer.Model
 
         public LearningSession StartRepetition()
         {
-            var provider = new WordSessionProvider(this.wordStorage, this.wordResultStorage);
-            var session = new LearningSession(provider.GetWordsToRepeat(this.Language), this.wordStorage);
+            var session = new LearningSession(wordSessionProvider.GetWordsToRepeat(this.Language), this.wordStorage);
             session.OnFinishHandler += UpdateSchedule;
 
             return session;
         }
 
         private void UpdateSchedule(LearningSession session)
-        {
-            var scheduleBuilder = new ScheduleBuilder();
-            
+        {            
             foreach (var word in session.PassedWords)
             {
                 var existingWordResult = wordResultStorage.AllList.Where(wr => wr.Word == word).FirstOrDefault();

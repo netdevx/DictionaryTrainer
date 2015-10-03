@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AnSoft.DictionaryTrainer.Model
 {
-    public class WordSessionProvider
+    public class WordSessionProvider: IWordSessionProvider
     {
         private const int cnstSessionWordCount = 15;
         private const int cnstAddedWordCount = 7;

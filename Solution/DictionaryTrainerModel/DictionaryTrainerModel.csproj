@@ -7,7 +7,7 @@
     <ProjectGuid>{EFAE6E98-9302-47C5-BA5E-5F3E9BBC5B9D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DictionaryTrainerModel</RootNamespace>
+    <RootNamespace>AnSoft.DictionaryTrainer.Model</RootNamespace>
     <AssemblyName>DictionaryTrainerModel</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -45,12 +45,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entity.cs" />
+    <Compile Include="IScheduleBuilder.cs" />
     <Compile Include="IStorage.cs" />
+    <Compile Include="IWordSessionProvider.cs" />
     <Compile Include="IWordStorage.cs" />
     <Compile Include="Language.cs" />
     <Compile Include="LearningSession.cs" />
     <Compile Include="LearningWord.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SavePointEntity.cs" />
     <Compile Include="ScheduleBuilder.cs" />
     <Compile Include="ScheduleItem.cs" />
     <Compile Include="Storage.cs" />

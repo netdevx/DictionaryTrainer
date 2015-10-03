@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AnSoft.DictionaryTrainer.Model
 {
-    public class ScheduleBuilder
+    public class ScheduleBuilder: IScheduleBuilder
     {
         private readonly IEnumerable<double> forgettingCurveInHours = new[] { 0, 0.5, 24, 24 * 7 * 2, 24 * 7 * 4 * 2 };
 
