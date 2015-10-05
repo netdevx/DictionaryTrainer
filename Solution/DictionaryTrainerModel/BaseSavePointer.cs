@@ -6,26 +6,31 @@ using System.Threading.Tasks;
 
 namespace AnSoft.DictionaryTrainer.Model
 {
-    [Serializable]
-    public abstract class SavePointEntity<TEntity> : Entity, ISavePointer, ICloneable where TEntity : SavePointEntity<TEntity>
+    public abstract class BaseSavePointer<TEntity> : ISavePointer where TEntity : Entity
     {
-        public abstract void CopyTo(TEntity copy);
+        public TEntity Entity { get; protected set; }
 
-        public TEntity Clone()
+        public BaseSavePointer(TEntity entity)
+        {
+            this.Entity = entity;
+        }
+
+        protected abstract void CopyTo(TEntity source, TEntity copy);
+
+        protected TEntity Clone(TEntity source)
         {
             var clone = System.Activator.CreateInstance(typeof(TEntity)) as TEntity;
-            this.CopyTo(clone);
+            this.CopyTo(source, clone);
 
             return clone;
         }
 
-        object ICloneable.Clone()
+        protected TEntity Clone()
         {
-            return this.Clone();
+            return this.Clone(this.Entity);
         }
 
-        [NonSerialized]
-        private TEntity savePoint;
+        protected TEntity savePoint;
 
         public void MakeSavePoint()
         {
@@ -44,7 +49,7 @@ namespace AnSoft.DictionaryTrainer.Model
         {
             if (this.savePoint != null)
             {
-                this.savePoint.CopyTo(this as TEntity);
+                this.CopyTo(this.savePoint, this.Entity);
                 this.savePoint = null;
             }
         }

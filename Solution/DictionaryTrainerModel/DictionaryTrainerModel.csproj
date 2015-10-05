@@ -45,7 +45,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseSavePointer.cs" />
     <Compile Include="Entity.cs" />
+    <Compile Include="ISavePointable.cs" />
+    <Compile Include="ISavePointer.cs" />
     <Compile Include="IScheduleBuilder.cs" />
     <Compile Include="IStorage.cs" />
     <Compile Include="IWordSessionProvider.cs" />
@@ -62,6 +65,7 @@
     <Compile Include="Word.cs" />
     <Compile Include="WordResult.cs" />
     <Compile Include="WordResultStorage.cs" />
+    <Compile Include="WordSavePointer.cs" />
     <Compile Include="WordsBaseParser.cs" />
     <Compile Include="WordSessionProvider.cs" />
     <Compile Include="WordStorage.cs" />

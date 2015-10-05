@@ -28,7 +28,7 @@ namespace AnSoft.DictionaryTrainer.ViewModel
                 this.isNewWord = true;
             }
             else
-                this.Word.MakeSavePoint();
+                this.Word.SavePointer.MakeSavePoint();
 
             this.SaveTranslationCmd = new Command(SaveTranslation);
             this.AddTranslationCmd = new Command(AddTranslation);
@@ -132,7 +132,7 @@ namespace AnSoft.DictionaryTrainer.ViewModel
             this.IsWordExists = false;
             if (!this.DictionaryEditorVM.MainVM.WordStorage.IsWordAlreadyExists(this.Word))
             {
-                this.Word.DeleteSavePoint();
+                this.Word.SavePointer.DeleteSavePoint();
                 if (isNewWord)
                 {
                     this.DictionaryEditorVM.Words.Add(this.Word);
@@ -147,7 +147,7 @@ namespace AnSoft.DictionaryTrainer.ViewModel
         public ICommand CancelCmd { get; protected set; }
         private void Cancel(object parameter)
         {
-            this.Word.RollbackToSavePoint();
+            this.Word.SavePointer.RollbackToSavePoint();
             this.RaiseOnClosed();
         }
 

@@ -28,8 +28,8 @@ namespace AnSoft.DictionaryTrainer.Model
             if (this.AllList.Any(word => this.AllList.Where(w => w != word && w.Language == word.Language && String.Equals(w.Spelling, word.Spelling, StringComparison.InvariantCultureIgnoreCase)).Any()))
                 throw new ApplicationException("There are some repetitions in word list within the same language! It's impossible to save changes!");
             foreach (var w in this.AllList)
-                if (w.IsSavePoint)
-                    w.DeleteSavePoint();
+                if (w.SavePointer.IsSavePoint)
+                    w.SavePointer.DeleteSavePoint();
             base.Save();
         }
     }
