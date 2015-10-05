@@ -8,27 +8,32 @@ namespace AnSoft.DictionaryTrainer.Model
 {
     public class LearningSession
     {
-        private IWordStorage wordStorage;
+        private IEnumerable<Word> wordStorage;
 
-        public LearningSession(IEnumerable<Word> words, IWordStorage wordStorage)
+        public LearningSession(IEnumerable<Word> words, IEnumerable<Word> wordStorage)
         {
             this.wordStorage = wordStorage;
             //if (!words.Any())
             //    throw new Exception("There are no any words to start learning");
 
             var learningWords = words.Select(w => new LearningWord() { Word = w}).ToArray();
-            this.Items = new LinkedList<LearningWord>(learningWords);
-            this.passedWords = new List<Word>();
-            this.CurrentItem = this.Items.First;
+            this.items = new LinkedList<LearningWord>(learningWords);            
+            this.passedWords = new List<Word>();            
+            this.CurrentItem = this.items.First;
 
             this.StartTime = DateTime.Now;
         }
 
-        public LinkedList<LearningWord> Items { get; protected set; }
-        private IList<Word> passedWords;
-        public IEnumerable<Word> PassedWords
+        private LinkedList<LearningWord> items;
+        public IReadOnlyCollection<LearningWord> Items
         {
-            get { return passedWords; }
+            get { return items.ToList().AsReadOnly(); }
+        }
+        
+        private List<Word> passedWords;
+        public IReadOnlyCollection<Word> PassedWords 
+        {
+            get { return passedWords.AsReadOnly(); }
         }
 
         protected LinkedListNode<LearningWord> CurrentItem { get; set; }
@@ -45,10 +50,10 @@ namespace AnSoft.DictionaryTrainer.Model
                 this.CurrentWord.TimesToShow--;
                 var itemToDelete = this.CurrentWord.TimesToShow <= 0 ? this.CurrentItem : null;
 
-                this.CurrentItem = this.CurrentItem.Next ?? (this.Items.First != itemToDelete ? this.Items.First : null);
+                this.CurrentItem = this.CurrentItem.Next ?? (this.items.First != itemToDelete ? this.items.First : null);
                 if (itemToDelete != null)
                 {
-                    this.Items.Remove(itemToDelete);
+                    this.items.Remove(itemToDelete);
                     this.passedWords.Add(itemToDelete.Value.Word);
                 }
 
@@ -58,15 +63,15 @@ namespace AnSoft.DictionaryTrainer.Model
                 {
                     this.FinishTime = DateTime.Now;
 
-                    if (this.OnFinishHandler != null)
-                        this.OnFinishHandler(this);
+                    if (this.OnFinish != null)
+                        this.OnFinish(this);
 
                     return NextResult.Finished;
                 }
             }
             else
             {                
-                var answer = this.wordStorage.AllList.FirstOrDefault(w => String.Equals(w.Spelling, this.CurrentWord.Answer, StringComparison.CurrentCultureIgnoreCase));
+                var answer = this.wordStorage.FirstOrDefault(w => String.Equals(w.Spelling, this.CurrentWord.Answer, StringComparison.CurrentCultureIgnoreCase));
                 
                 if ((answer != null && answer.Translations.Any(t => this.CurrentWord.Word.Translations.Any(x => String.Equals(x.Spelling, t.Spelling, StringComparison.CurrentCultureIgnoreCase)))))
                 {
@@ -84,7 +89,7 @@ namespace AnSoft.DictionaryTrainer.Model
 
         public DateTime FinishTime { get; protected set; }
 
-        public event Action<LearningSession> OnFinishHandler;
+        public event Action<LearningSession> OnFinish;
 
         public enum NextResult
         {

@@ -23,28 +23,27 @@ namespace AnSoft.DictionaryTrainer.Model
         }
 
         public Language Language { get; set; }
+        public Language NativeLanguage { get; set; }
         
         public Mode SwitchedMode { get; set; }
+
+        public LearningSession Session { get; protected set; }
 
         public LearningSession Start()
         {
             return null;
         }
 
-        public LearningSession StartNewLearning()
+        public void StartNewLearning()
         {
-            var session = new LearningSession(wordSessionProvider.GetNextWords(this.Language), this.wordStorage);
-            session.OnFinishHandler += UpdateSchedule;
-
-            return session;
+            this.Session = new LearningSession(wordSessionProvider.GetNextWords(this.Language), this.wordStorage.AllList);
+            this.Session.OnFinish += UpdateSchedule;
         }
 
-        public LearningSession StartRepetition()
+        public void StartRepetition()
         {
-            var session = new LearningSession(wordSessionProvider.GetWordsToRepeat(this.Language), this.wordStorage);
-            session.OnFinishHandler += UpdateSchedule;
-
-            return session;
+            this.Session = new LearningSession(wordSessionProvider.GetWordsToRepeat(this.Language), this.wordStorage.AllList);
+            this.Session.OnFinish += UpdateSchedule;
         }
 
         private void UpdateSchedule(LearningSession session)

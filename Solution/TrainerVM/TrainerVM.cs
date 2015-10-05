@@ -19,7 +19,6 @@ namespace AnSoft.DictionaryTrainer.ViewModel
         public MainVM MainVM { get; protected set; }
 
         private Trainer trainer;
-        private LearningSession session;
 
         private Timer repetitionTimer;
 
@@ -136,16 +135,16 @@ namespace AnSoft.DictionaryTrainer.ViewModel
         private void StartNewLearning(object parameter)
         {
             this.IsSessionInProcess = true;
-            session = trainer.StartNewLearning();
-            this.NewWords = new ReadOnlyObservableCollection<LearningWord>(new ObservableCollection<LearningWord>(session.Items));
+            trainer.StartNewLearning();
+            this.NewWords = new ReadOnlyObservableCollection<LearningWord>(new ObservableCollection<LearningWord>(trainer.Session.Items));
         }
 
         public ICommand StartRepetitionCmd { get; protected set; }
         private void StartRepetition(object parameter)
         {
             this.IsSessionInProcess = true;
-            session = trainer.StartRepetition();
-            this.CurrentWord = session.CurrentWord;
+            trainer.StartRepetition();
+            this.CurrentWord = trainer.Session.CurrentWord;
             if (this.CurrentWord == null)
                 this.IsSessionInProcess = false;
         }
@@ -154,15 +153,15 @@ namespace AnSoft.DictionaryTrainer.ViewModel
         private void StartChecking(object parameter)
         {
             this.NewWords = null;
-            this.CurrentWord = session.CurrentWord;
+            this.CurrentWord = trainer.Session.CurrentWord;
         }
 
         public ICommand CheckWordCmd { get; protected set; }
         private void CheckWord(object parameter)
         {
-            var result = session.Next();
+            var result = trainer.Session.Next();
             this.CurrentWord.Answer = String.Empty;
-            this.CurrentWord = session.CurrentWord;
+            this.CurrentWord = trainer.Session.CurrentWord;
 
             this.IsWrongAnswer = (result == LearningSession.NextResult.Wrong || result == LearningSession.NextResult.ExpectedOtherVariant);
             this.IsExpectedOtherAnswer = result == LearningSession.NextResult.ExpectedOtherVariant;
