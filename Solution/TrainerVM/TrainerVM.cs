@@ -103,6 +103,7 @@ namespace AnSoft.DictionaryTrainer.ViewModel
                 this.RaisePropertyChanged("IsCurrentWordVisible");
             }
         }
+        
         private bool isExpectedOtherAnswer;
         public bool IsExpectedOtherAnswer
         {
