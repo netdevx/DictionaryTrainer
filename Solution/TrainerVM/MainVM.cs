@@ -19,8 +19,8 @@ namespace AnSoft.DictionaryTrainer.ViewModel
 
         public MainVM()
         {
-            this.WordStorage = new WordStorage("c:\\tmp\\dictionary.dat");
-            this.WordResultStorage = new WordResultStorage("results.dat");
+            this.WordStorage = DIContainer.Instance.Get<IWordStorage>();
+            this.WordResultStorage = DIContainer.Instance.Get<IStorage<WordResult>>();
 
             this.TrainerVM = new TrainerVM(this);
 

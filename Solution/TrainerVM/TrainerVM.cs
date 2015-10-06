@@ -25,8 +25,7 @@ namespace AnSoft.DictionaryTrainer.ViewModel
         public TrainerVM(MainVM mainVM)
         {
             this.MainVM = mainVM;
-            var wordProvider = new WordSessionProvider(this.MainVM.WordStorage, this.MainVM.WordResultStorage);
-            this.trainer = new Trainer(this.MainVM.WordStorage, this.MainVM.WordResultStorage, Language.En, wordProvider, new ScheduleBuilder());
+            this.trainer = DIContainer.Instance.Get<Trainer>();
 
             this.StartNewLearningCmd = new Command(StartNewLearning);
             this.StartRepetitionCmd = new Command(StartRepetition);
