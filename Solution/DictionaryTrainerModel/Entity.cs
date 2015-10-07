@@ -19,6 +19,8 @@ namespace AnSoft.DictionaryTrainer.Model
                 return false;
             else if (Object.ReferenceEquals(this, other))
                 return true;
+            else if (other.GetType() != this.GetType())
+                return false;
             else
                 return this.ID == other.ID;
         }

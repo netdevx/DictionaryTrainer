@@ -10,15 +10,15 @@ namespace AnSoft.DictionaryTrainer.Model
     {
         public WordSavePointer(Word source) : base(source) { }
 
-        protected override void CopyTo(Word source, Word copy)
+        public override void CopyTo(Word source, Word copy)
         {
             copy.ID = source.ID;
             copy.Language = source.Language;
             copy.Spelling = source.Spelling;
             copy.UsingFrequencyNumber = source.UsingFrequencyNumber;
             copy.CreateDate = source.CreateDate;
+            
             copy.Phrases = new List<string>();
-
             foreach (var phrase in source.Phrases)
                 copy.Phrases.Add(phrase);
 

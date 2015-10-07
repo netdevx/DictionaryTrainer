@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.2.1507.0118\lib\net40\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
@@ -52,12 +55,20 @@
   <ItemGroup>
     <Compile Include="ParserTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="EntityTests.cs" />
+    <Compile Include="ScheduleBuilderTests.cs" />
+    <Compile Include="WordSessionProviderTests.cs" />
+    <Compile Include="WordTests.cs" />
+    <Compile Include="WordSavePointerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DictionaryTrainerModel\DictionaryTrainerModel.csproj">
       <Project>{efae6e98-9302-47c5-ba5e-5f3e9bbc5b9d}</Project>
       <Name>DictionaryTrainerModel</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

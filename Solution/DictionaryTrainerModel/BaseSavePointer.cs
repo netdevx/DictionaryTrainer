@@ -15,7 +15,7 @@ namespace AnSoft.DictionaryTrainer.Model
             this.Entity = entity;
         }
 
-        protected abstract void CopyTo(TEntity source, TEntity copy);
+        public abstract void CopyTo(TEntity source, TEntity copy);
 
         protected TEntity Clone(TEntity source)
         {
