@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace AnSoft.DictionaryTrainer.Model
+using AnSoft.DictionaryTrainer.Model;
+
+namespace AnSoft.DictionaryTrainer.Storage
 {
     public abstract class Storage<T>: IStorage<T> where T: class
     {

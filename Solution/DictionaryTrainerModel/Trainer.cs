@@ -29,11 +29,6 @@ namespace AnSoft.DictionaryTrainer.Model
 
         public LearningSession Session { get; protected set; }
 
-        public LearningSession Start()
-        {
-            return null;
-        }
-
         public void StartNewLearning()
         {
             this.Session = new LearningSession(wordSessionProvider.GetNextWords(this.Language), this.wordStorage.AllList);
@@ -63,6 +58,7 @@ namespace AnSoft.DictionaryTrainer.Model
                 }
             }
             wordResultStorage.Save();
+            this.Session = null;
         }
 
         public enum Mode

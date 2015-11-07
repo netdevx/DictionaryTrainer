@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Ninject;
 
 using AnSoft.DictionaryTrainer.Model;
+using AnSoft.DictionaryTrainer.Storage;
 
 namespace AnSoft.DictionaryTrainer.ViewModel
 {

@@ -14,7 +14,5 @@ namespace AnSoft.DictionaryTrainer.Model
         public bool IsShown { get; set; }
 
         public bool IsSuccessful { get; set; }
-
-        public int AttemptCount { get; set; }
     }
 }

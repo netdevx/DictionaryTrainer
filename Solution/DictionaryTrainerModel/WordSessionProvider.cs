@@ -42,7 +42,9 @@ namespace AnSoft.DictionaryTrainer.Model
 
         public IEnumerable<Word> GetWordsToRepeat(Language language)
         {
-            var list = this.WordResultStorage.AllList.Where(wr => wr.LearningSchedule.Any(i => !i.IsShown && i.DateToShow <= DateTime.Now) && wr.Word.Language == language).Select(wr => wr.Word);
+            var list = this.WordResultStorage.AllList
+                .Where(wr => wr.LearningSchedule.Any(i => !i.IsShown && i.DateToShow <= DateTime.Now) && wr.Word.Language == language)
+                .Select(wr => wr.Word);
             
             return list;
         }

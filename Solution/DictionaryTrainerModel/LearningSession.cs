@@ -8,11 +8,11 @@ namespace AnSoft.DictionaryTrainer.Model
 {
     public class LearningSession
     {
-        private IEnumerable<Word> wordStorage;
+        private IEnumerable<Word> allWords;
 
-        public LearningSession(IEnumerable<Word> words, IEnumerable<Word> wordStorage)
+        public LearningSession(IEnumerable<Word> words, IEnumerable<Word> allWords)
         {
-            this.wordStorage = wordStorage;
+            this.allWords = allWords;
             //if (!words.Any())
             //    throw new Exception("There are no any words to start learning");
 
@@ -71,7 +71,7 @@ namespace AnSoft.DictionaryTrainer.Model
             }
             else
             {                
-                var answer = this.wordStorage.FirstOrDefault(w => String.Equals(w.Spelling, this.CurrentWord.Answer, StringComparison.CurrentCultureIgnoreCase));
+                var answer = this.allWords.FirstOrDefault(w => String.Equals(w.Spelling, this.CurrentWord.Answer, StringComparison.CurrentCultureIgnoreCase));
                 
                 if ((answer != null && answer.Translations.Any(t => this.CurrentWord.Word.Translations.Any(x => String.Equals(x.Spelling, t.Spelling, StringComparison.CurrentCultureIgnoreCase)))))
                 {

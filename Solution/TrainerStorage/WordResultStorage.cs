@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AnSoft.DictionaryTrainer.Model
+using AnSoft.DictionaryTrainer.Model;
+
+namespace AnSoft.DictionaryTrainer.Storage
 {
     public class WordResultStorage: Storage<WordResult>
     {

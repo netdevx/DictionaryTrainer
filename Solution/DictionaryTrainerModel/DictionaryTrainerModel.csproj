@@ -60,15 +60,12 @@
     <Compile Include="SavePointEntity.cs" />
     <Compile Include="ScheduleBuilder.cs" />
     <Compile Include="ScheduleItem.cs" />
-    <Compile Include="Storage.cs" />
     <Compile Include="Trainer.cs" />
     <Compile Include="Word.cs" />
     <Compile Include="WordResult.cs" />
-    <Compile Include="WordResultStorage.cs" />
     <Compile Include="WordSavePointer.cs" />
     <Compile Include="WordsBaseParser.cs" />
     <Compile Include="WordSessionProvider.cs" />
-    <Compile Include="WordStorage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AnSoft.pfx" />

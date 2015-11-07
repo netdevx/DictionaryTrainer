@@ -15,7 +15,7 @@
       </Enum>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AgAAAAACAAAACAAAQAgCAAAAIABQAAEAQAAAAAAAAAA=</HashCode>
+      <HashCode>AwAAAAACAAAACAAAQAgCAAAAIABAAAEAQAAAAAAAAAA=</HashCode>
       <FileName>LearningSession.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -56,7 +56,7 @@
   <Class Name="AnSoft.DictionaryTrainer.Model.ScheduleItem">
     <Position X="8.75" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gAAAAIAAAAAAAAAAAAAgAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <HashCode>gAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
       <FileName>ScheduleItem.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -140,33 +140,6 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="AnSoft.DictionaryTrainer.Model.Storage&lt;T&gt;">
-    <Position X="6.25" Y="9" Width="1.5" />
-    <Compartments>
-      <Compartment Name="Protected" Collapsed="true" />
-    </Compartments>
-    <TypeIdentifier>
-      <HashCode>AAAAAIAAAgAAAAAAAAAAAAAAAAAAAAAAAQAAEAAAABA=</HashCode>
-      <FileName>Storage.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="AnSoft.DictionaryTrainer.Model.WordResultStorage">
-    <Position X="3" Y="10" Width="2.25" />
-    <Compartments>
-      <Compartment Name="Public" Collapsed="true" />
-    </Compartments>
-    <InheritanceLine Type="AnSoft.DictionaryTrainer.Model.Storage&lt;T&gt;" FixedToPoint="true">
-      <Path>
-        <Point X="6.25" Y="10.5" />
-        <Point X="5.25" Y="10.5" />
-      </Path>
-    </InheritanceLine>
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>WordResultStorage.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="AnSoft.DictionaryTrainer.Model.WordsBaseParser">
     <Position X="0.5" Y="9.75" Width="2" />
     <Compartments>
@@ -176,14 +149,6 @@
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAQAAAAAAACAAA=</HashCode>
       <FileName>WordsBaseParser.cs</FileName>
     </TypeIdentifier>
-  </Class>
-  <Class Name="AnSoft.DictionaryTrainer.Model.WordStorage" Collapsed="true">
-    <Position X="3" Y="9" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAIAAAAAAAgAAAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
-      <FileName>WordStorage.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
   </Class>
   <Class Name="AnSoft.DictionaryTrainer.Model.Entity">
     <Position X="11.75" Y="2.25" Width="2" />
@@ -259,6 +224,20 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAQAQAAAAEAAAAAAAAAAAAAAAIAAAAA=</HashCode>
       <FileName>ISavePointer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AnSoft.DictionaryTrainer.Model.IWordSessionProvider">
+    <Position X="3" Y="5.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>IWordSessionProvider.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AnSoft.DictionaryTrainer.Model.IScheduleBuilder">
+    <Position X="3" Y="6.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IScheduleBuilder.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Enum Name="AnSoft.DictionaryTrainer.Model.Language">
