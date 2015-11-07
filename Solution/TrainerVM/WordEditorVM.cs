@@ -23,7 +23,7 @@ namespace AnSoft.DictionaryTrainer.ViewModel
 
             if (this.Word == null)
             {
-                this.Word = new Word() { ID = Guid.NewGuid(), Language = Language.En, CreateDate = DateTime.Now};
+                this.Word = new Word() { ID = Guid.NewGuid(), Language = Language.En };
                 //this.Word.Translations.Add(new Word() { ID = Guid.NewGuid(), Language = Language.Rus });
                 this.isNewWord = true;
             }
@@ -136,7 +136,7 @@ namespace AnSoft.DictionaryTrainer.ViewModel
                 if (isNewWord)
                 {
                     this.DictionaryEditorVM.Words.Add(this.Word);
-                    this.DictionaryEditorVM.MainVM.WordStorage.AllList.Add(this.Word);
+                    this.DictionaryEditorVM.MainVM.WordStorage.Add(this.Word);
                 }
                 this.RaiseOnClosed();
             }
@@ -166,7 +166,7 @@ namespace AnSoft.DictionaryTrainer.ViewModel
         {
             if (!String.IsNullOrEmpty(this.Translation))
             {
-                this.Word.Translations.Add(new Word() { ID = Guid.NewGuid(), Language = Language.Rus, Spelling = this.Translation, CreateDate = DateTime.Now });
+                this.Word.Translations.Add(new Word() { ID = Guid.NewGuid(), Language = Language.Rus, Spelling = this.Translation });
                 this.FullRefresh();
             }
         }

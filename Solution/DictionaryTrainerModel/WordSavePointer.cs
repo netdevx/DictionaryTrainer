@@ -16,7 +16,6 @@ namespace AnSoft.DictionaryTrainer.Model
             copy.Language = source.Language;
             copy.Spelling = source.Spelling;
             copy.UsingFrequencyNumber = source.UsingFrequencyNumber;
-            copy.CreateDate = source.CreateDate;
             
             copy.Phrases = new List<string>();
             foreach (var phrase in source.Phrases)

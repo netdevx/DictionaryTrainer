@@ -11,8 +11,6 @@ namespace AnSoft.DictionaryTrainer.Model
     {
         public Guid ID { get; set; }
 
-        public DateTime CreateDate { get; set; }
-
         public bool Equals(Entity other)
         {
             if (other == null)

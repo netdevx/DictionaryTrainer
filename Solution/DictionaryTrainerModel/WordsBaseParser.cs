@@ -38,10 +38,10 @@ namespace AnSoft.DictionaryTrainer.Model
                 var words = row.Split(separators, StringSplitOptions.RemoveEmptyEntries).Select(w => w.Trim()).ToArray();
                 var translations = words.Where(w => this.IsRussian(w));
 
-                var word = new Word() { ID = Guid.NewGuid(), Language = Language.En, Spelling = words[1], UsingFrequencyNumber = wordList.Count + 1, CreateDate = DateTime.Now };
+                var word = new Word() { ID = Guid.NewGuid(), Language = Language.En, Spelling = words[1], UsingFrequencyNumber = wordList.Count + 1 };
                 foreach(var t in translations)
                 {
-                    var translation = new Word() { ID = Guid.NewGuid(), Language = Language.Rus, Spelling = t, CreateDate = DateTime.Now };
+                    var translation = new Word() { ID = Guid.NewGuid(), Language = Language.Rus, Spelling = t/*, CreateDate = DateTime.Now*/ };
                     word.Translations.Add(translation);
                 }
                 

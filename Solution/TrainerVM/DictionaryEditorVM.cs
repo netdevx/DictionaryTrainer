@@ -107,7 +107,7 @@ namespace AnSoft.DictionaryTrainer.ViewModel
         public ICommand DeleteWordCmd { get; protected set; }
         private void DeleteWord(object parameter)
         {
-            this.MainVM.WordStorage.AllList.Remove(SelectedWord);
+            this.MainVM.WordStorage.Delete(SelectedWord);
             this.Words.Remove(SelectedWord);
         }
     }

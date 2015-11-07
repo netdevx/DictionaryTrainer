@@ -47,7 +47,7 @@ namespace AnSoft.DictionaryTrainer.Model
             {
                 var existingWordResult = wordResultStorage.AllList.Where(wr => wr.Word == word).FirstOrDefault();
                 if (existingWordResult == null)
-                    wordResultStorage.AllList.Add(new WordResult() { Word = word, LearningSchedule = scheduleBuilder.GetSchedule(session.FinishTime).ToList() });
+                    wordResultStorage.Add(new WordResult() { Word = word, LearningSchedule = scheduleBuilder.GetSchedule(session.FinishTime).ToList() });
                 else
                 {
                     var scheduleItem = existingWordResult.LearningSchedule.Where(i => i.IsShown == false).OrderBy(i => i.DateToShow).FirstOrDefault();
