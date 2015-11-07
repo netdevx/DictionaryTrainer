@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
 
 using Ninject;
 
@@ -35,7 +36,16 @@ namespace AnSoft.DictionaryTrainer.ViewModel
             this.Bind<Trainer>().To<Trainer>().WithConstructorArgument("language", Language.En);
             this.Bind<IWordStorage>().To<WordStorage>().WithConstructorArgument<string>("c:\\tmp\\dictionary.dat");
             this.Bind<IStorage<WordResult>>().To<WordResultStorage>().WithConstructorArgument<string>("results.dat");
-            this.Bind<IWordSessionProvider>().To<WordSessionProvider>();
+
+            int sessionWordCount = 10;
+            byte customWordPercent = 50;
+            Int32.TryParse(ConfigurationManager.AppSettings["sessionWordCount"], out sessionWordCount);
+            Byte.TryParse(ConfigurationManager.AppSettings["customWordPercent"], out customWordPercent);
+
+            this.Bind<IWordSessionProvider>().To<WordSessionProvider>()
+                .WithConstructorArgument("sessionWordCount", sessionWordCount)
+                .WithConstructorArgument("customWordPercent", customWordPercent);
+            
             this.Bind<IScheduleBuilder>().To<ScheduleBuilder>();
         }
 

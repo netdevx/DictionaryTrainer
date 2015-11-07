@@ -135,7 +135,7 @@
       <Compartment Name="Protected" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAAACAAAAAAAAAAAACARAAAAAAAAAAAAEABAAAAAA=</HashCode>
+      <HashCode>AAAAAACAAAAAAAAAACAAABAAAQAAAAAAAAEABAAAAAA=</HashCode>
       <FileName>WordSessionProvider.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
