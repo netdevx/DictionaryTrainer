@@ -41,7 +41,7 @@ namespace DictionaryTrainerModel.Tests
             var wordStorage = new Mock<IWordStorage>();
             wordStorage.Setup(s => s.GetWordsByLanguage(It.Is<Language>(x => x == Language.En))).Returns(() => allList);
 
-            var provider = new WordSessionProvider(wordStorage.Object, wordResultStorage.Object);
+            var provider = new WordSessionProvider(wordStorage.Object, wordResultStorage.Object, 5, 50);
 
             var actual = provider.GetNextWords(Language.En).ToArray();
 
@@ -93,7 +93,7 @@ namespace DictionaryTrainerModel.Tests
             wordResultStorage.Setup(s => s.AllList).Returns(() => words);
             var wordStorage = new Mock<IWordStorage>();
 
-            var provider = new WordSessionProvider(wordStorage.Object, wordResultStorage.Object);
+            var provider = new WordSessionProvider(wordStorage.Object, wordResultStorage.Object, 5, 50);
 
             var actual = provider.GetWordsToRepeat(Language.En);
 

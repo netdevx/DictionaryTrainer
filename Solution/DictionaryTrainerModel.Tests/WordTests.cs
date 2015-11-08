@@ -23,7 +23,7 @@ namespace DictionaryTrainerModel.Tests
             var word = new Word();
 
             Assert.IsNotNull(word.SavePointer);
-            Assert.IsInstanceOfType(word.SavePointer, typeof(WordSavePointer));
+            Assert.IsInstanceOfType(word.SavePointer, typeof(ISavePointer));
         }
     }
 }

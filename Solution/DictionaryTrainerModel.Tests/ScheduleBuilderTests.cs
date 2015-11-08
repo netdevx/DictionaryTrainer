@@ -13,7 +13,7 @@ namespace DictionaryTrainerModel.Tests
         [TestMethod]
         public void Build()
         {
-            var forgettingCurveInHours = new[] { 0, 0.5, 24, 24 * 7 * 2, 24 * 7 * 4 * 2 };
+            var forgettingCurveInHours = new[] { 0, 0.5, 24, 24*7*2, 24*7*4*2 };
             var startDate = DateTime.Now;
 
             var builder = new ScheduleBuilder();

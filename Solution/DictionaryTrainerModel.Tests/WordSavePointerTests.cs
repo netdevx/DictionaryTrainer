@@ -14,7 +14,6 @@ namespace DictionaryTrainerModel.Tests
             var word = new Word()
             {
                 ID = Guid.NewGuid(),
-                CreateDate = DateTime.Now,
                 Language = Language.En,
                 Spelling = "dream",
                 UsingFrequencyNumber = 9,
@@ -36,7 +35,6 @@ namespace DictionaryTrainerModel.Tests
             Assert.AreEqual(expected.ID, actual.ID);
             Assert.AreEqual(expected.Language, actual.Language);
             Assert.AreEqual(expected.Spelling, actual.Spelling);
-            Assert.AreEqual(expected.CreateDate, actual.CreateDate);
             Assert.AreEqual(expected.UsingFrequencyNumber, actual.UsingFrequencyNumber);
 
             Assert.AreEqual(expected.Phrases.Count, actual.Phrases.Count);

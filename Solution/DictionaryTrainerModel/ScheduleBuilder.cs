@@ -8,6 +8,7 @@ namespace AnSoft.DictionaryTrainer.Model
 {
     public class ScheduleBuilder: IScheduleBuilder
     {
+        // standard ebbinghaus forgetting curve
         private readonly IEnumerable<double> forgettingCurveInHours = new[] { 0, 0.5, 24, 24*7*2, 24*7*4*2 };
 
         public IEnumerable<ScheduleItem> GetSchedule(DateTime fromDate)
