@@ -16,7 +16,6 @@ namespace AnSoft.DictionaryTrainer.Model
             var learningWords = words.Select(w => new SessionWord() { Word = w}).ToArray();
             
             this.items = new LinkedList<SessionWord>(learningWords);
-            this.roItems = new ReadOnlyCollection<SessionWord>(this.items.ToList());
             this.CurrentItem = this.items.First;
 
             this.passedWords = new List<Word>();
@@ -28,10 +27,9 @@ namespace AnSoft.DictionaryTrainer.Model
         private IEnumerable<Word> allWords;
 
         private LinkedList<SessionWord> items;
-        private IReadOnlyCollection<SessionWord> roItems;
         public IReadOnlyCollection<SessionWord> Items
         {
-            get { return roItems; }
+            get { return items.ToList().AsReadOnly(); }
         }
         
         private List<Word> passedWords;
