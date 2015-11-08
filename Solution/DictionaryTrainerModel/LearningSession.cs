@@ -3,37 +3,42 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 
 namespace AnSoft.DictionaryTrainer.Model
 {
     public class LearningSession
     {
-        private IEnumerable<Word> allWords;
-
         public LearningSession(IEnumerable<Word> words, IEnumerable<Word> allWords)
         {
             this.allWords = allWords;
-            //if (!words.Any())
-            //    throw new Exception("There are no any words to start learning");
 
             var learningWords = words.Select(w => new LearningWord() { Word = w}).ToArray();
-            this.items = new LinkedList<LearningWord>(learningWords);            
-            this.passedWords = new List<Word>();            
+            
+            this.items = new LinkedList<LearningWord>(learningWords);
+            this.roItems = new ReadOnlyCollection<LearningWord>(this.items.ToList());
             this.CurrentItem = this.items.First;
+
+            this.passedWords = new List<Word>();
+            this.roPassedWords = new ReadOnlyCollection<Word>(passedWords);
 
             this.StartTime = DateTime.Now;
         }
 
+        private IEnumerable<Word> allWords;
+
         private LinkedList<LearningWord> items;
+        private IReadOnlyCollection<LearningWord> roItems;
         public IReadOnlyCollection<LearningWord> Items
         {
-            get { return items.ToList().AsReadOnly(); }
+            get { return roItems; }
         }
         
         private List<Word> passedWords;
-        public IReadOnlyCollection<Word> PassedWords 
+        private IReadOnlyCollection<Word> roPassedWords;
+        public IReadOnlyCollection<Word> PassedWords
         {
-            get { return passedWords.AsReadOnly(); }
+            get { return roPassedWords; }
         }
 
         protected LinkedListNode<LearningWord> CurrentItem { get; set; }
@@ -50,6 +55,7 @@ namespace AnSoft.DictionaryTrainer.Model
                 this.CurrentWord.TimesToShow--;
                 var itemToDelete = this.CurrentWord.TimesToShow <= 0 ? this.CurrentItem : null;
 
+                // it provides cycling walk of linked list
                 this.CurrentItem = this.CurrentItem.Next ?? (this.items.First != itemToDelete ? this.items.First : null);
                 if (itemToDelete != null)
                 {
