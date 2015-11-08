@@ -138,6 +138,8 @@ namespace AnSoft.DictionaryTrainer.ViewModel
                     this.DictionaryEditorVM.Words.Add(this.Word);
                     this.DictionaryEditorVM.MainVM.WordStorage.Add(this.Word);
                 }
+                else
+                    this.DictionaryEditorVM.MainVM.WordStorage.Update(this.Word);
                 this.RaiseOnClosed();
             }
             else

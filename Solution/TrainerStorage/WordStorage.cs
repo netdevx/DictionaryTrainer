@@ -19,6 +19,44 @@ namespace AnSoft.DictionaryTrainer.Storage
             return AllList.Where(w => w.Language == language);
         }
 
+        public override Word Add(Word item)
+        {
+            this.ThrowExceptionIfWordExists(item);
+
+            this.ReplaceTranslationRepetitions(item);
+            return base.Add(item);
+        }
+
+        private void ThrowExceptionIfWordExists(Word item)
+        {
+            if (this.IsWordAlreadyExists(item))
+                throw new ApplicationException("The same word already exists in word base!");
+        }
+
+        private void ReplaceTranslationRepetitions(Word item)
+        {
+            for (int i = 0; i < item.Translations.Count; i++)
+            {
+                var existingWord = this.GetWordsByLanguage(item.Translations[i].Language).Where(w => String.Equals(w.Spelling, item.Translations[i].Spelling, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
+                if (existingWord != null)
+                {
+                    if (!ReferenceEquals(existingWord, item.Translations[i]))
+                        item.Translations[i] = existingWord;
+                }
+                else
+                {
+                    this.allList.Add(item.Translations[i]);
+                }
+            }
+        }
+
+        public override Word Update(Word item)
+        {
+            this.ThrowExceptionIfWordExists(item);
+
+            this.ReplaceTranslationRepetitions(item);
+            return base.Update(item);
+        }
 
         public bool IsWordAlreadyExists(Word word)
         {

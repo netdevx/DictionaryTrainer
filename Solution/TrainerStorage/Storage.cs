@@ -31,18 +31,18 @@ namespace AnSoft.DictionaryTrainer.Storage
             get { return roAllList; }
         }
 
-        public T Add(T item)
+        public virtual T Add(T item)
         {
             this.allList.Add(item);
             return item;
         }
 
-        public T Update(T item)
+        public virtual T Update(T item)
         {
             return item;
         }
 
-        public bool Delete(T item)
+        public virtual bool Delete(T item)
         {
             this.allList.Remove(item);
             return true;
