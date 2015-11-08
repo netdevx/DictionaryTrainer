@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace AnSoft.DictionaryTrainer.Model
 {
-    public class LearningWord
+    public class SessionWord
     {
-        public LearningWord()
+        public SessionWord()
         {
             this.TimesToShow = 1;
         }

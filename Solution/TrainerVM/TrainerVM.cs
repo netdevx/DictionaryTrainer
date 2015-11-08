@@ -51,8 +51,8 @@ namespace AnSoft.DictionaryTrainer.ViewModel
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private ReadOnlyObservableCollection<LearningWord> newWords;
-        public ReadOnlyObservableCollection<LearningWord> NewWords
+        private ReadOnlyObservableCollection<SessionWord> newWords;
+        public ReadOnlyObservableCollection<SessionWord> NewWords
         {
             get { return newWords; }
             protected set
@@ -71,8 +71,8 @@ namespace AnSoft.DictionaryTrainer.ViewModel
             }
         }
 
-        private LearningWord currentWord;
-        public LearningWord CurrentWord
+        private SessionWord currentWord;
+        public SessionWord CurrentWord
         {
             get { return currentWord; }
             protected set
@@ -136,7 +136,7 @@ namespace AnSoft.DictionaryTrainer.ViewModel
         {
             this.IsSessionInProcess = true;
             trainer.StartNewLearning();
-            this.NewWords = new ReadOnlyObservableCollection<LearningWord>(new ObservableCollection<LearningWord>(trainer.Session.Items));
+            this.NewWords = new ReadOnlyObservableCollection<SessionWord>(new ObservableCollection<SessionWord>(trainer.Session.Items));
         }
 
         public ICommand StartRepetitionCmd { get; protected set; }

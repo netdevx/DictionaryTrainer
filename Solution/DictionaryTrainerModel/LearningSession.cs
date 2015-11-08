@@ -13,10 +13,10 @@ namespace AnSoft.DictionaryTrainer.Model
         {
             this.allWords = allWords;
 
-            var learningWords = words.Select(w => new LearningWord() { Word = w}).ToArray();
+            var learningWords = words.Select(w => new SessionWord() { Word = w}).ToArray();
             
-            this.items = new LinkedList<LearningWord>(learningWords);
-            this.roItems = new ReadOnlyCollection<LearningWord>(this.items.ToList());
+            this.items = new LinkedList<SessionWord>(learningWords);
+            this.roItems = new ReadOnlyCollection<SessionWord>(this.items.ToList());
             this.CurrentItem = this.items.First;
 
             this.passedWords = new List<Word>();
@@ -27,9 +27,9 @@ namespace AnSoft.DictionaryTrainer.Model
 
         private IEnumerable<Word> allWords;
 
-        private LinkedList<LearningWord> items;
-        private IReadOnlyCollection<LearningWord> roItems;
-        public IReadOnlyCollection<LearningWord> Items
+        private LinkedList<SessionWord> items;
+        private IReadOnlyCollection<SessionWord> roItems;
+        public IReadOnlyCollection<SessionWord> Items
         {
             get { return roItems; }
         }
@@ -41,9 +41,9 @@ namespace AnSoft.DictionaryTrainer.Model
             get { return roPassedWords; }
         }
 
-        protected LinkedListNode<LearningWord> CurrentItem { get; set; }
+        protected LinkedListNode<SessionWord> CurrentItem { get; set; }
 
-        public LearningWord CurrentWord 
+        public SessionWord CurrentWord 
         {
             get { return this.CurrentItem != null ? this.CurrentItem.Value : null; }
         }
