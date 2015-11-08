@@ -41,11 +41,11 @@ namespace AnSoft.DictionaryTrainer.Model
             this.Session.OnFinish += UpdateSchedule;
         }
 
-        private void UpdateSchedule(LearningSession session)
+        protected void UpdateSchedule(LearningSession session)
         {            
             foreach (var word in session.PassedWords)
             {
-                var existingWordResult = wordResultStorage.AllList.Where(wr => wr.Word == word).FirstOrDefault();
+                var existingWordResult = wordResultStorage.AllList.Where(wr => wr.Word.ID == word.ID).FirstOrDefault();
                 if (existingWordResult == null)
                     wordResultStorage.Add(new WordResult() { Word = word, LearningSchedule = scheduleBuilder.GetSchedule(session.FinishTime).ToList() });
                 else

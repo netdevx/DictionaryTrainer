@@ -53,11 +53,13 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="MyAssertions.cs" />
     <Compile Include="ParserTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EntityTests.cs" />
     <Compile Include="ScheduleBuilderTests.cs" />
     <Compile Include="SessionWordTests.cs" />
+    <Compile Include="TrainerTests.cs" />
     <Compile Include="WordSessionProviderTests.cs" />
     <Compile Include="WordTests.cs" />
     <Compile Include="WordSavePointerTests.cs" />

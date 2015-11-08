@@ -36,7 +36,7 @@ namespace AnSoft.DictionaryTrainer.Model
         
         private List<Word> passedWords;
         private IReadOnlyCollection<Word> roPassedWords;
-        public IReadOnlyCollection<Word> PassedWords
+        public virtual IReadOnlyCollection<Word> PassedWords
         {
             get { return roPassedWords; }
         }
@@ -91,9 +91,9 @@ namespace AnSoft.DictionaryTrainer.Model
             }
         }
 
-        public DateTime StartTime { get; protected set; }
+        public virtual DateTime StartTime { get; protected set; }
 
-        public DateTime FinishTime { get; protected set; }
+        public virtual DateTime FinishTime { get; protected set; }
 
         public event Action<LearningSession> OnFinish;
 
