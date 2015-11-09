@@ -15,8 +15,7 @@ namespace AnSoft.DictionaryTrainer.Storage
     {        
         public Storage(string source)
         {
-            this.allList = new List<T>();
-            this.roAllList = new ReadOnlyCollection<T>(allList);
+            this.Items = new List<T>();            
 
             this.Source = source;
             this.Reopen();
@@ -24,8 +23,18 @@ namespace AnSoft.DictionaryTrainer.Storage
 
         public string Source { get; set; }
 
-        protected IList<T> allList;
-        public IReadOnlyCollection<T> roAllList;
+        private IList<T> items;
+        protected IList<T> Items
+        {
+            get { return items; }
+            set 
+            { 
+                items = value;
+                this.roAllList = new ReadOnlyCollection<T>(Items);
+            }
+        }
+
+        private IReadOnlyCollection<T> roAllList;
         public IReadOnlyCollection<T> AllList
         {
             get { return roAllList; }
@@ -33,7 +42,7 @@ namespace AnSoft.DictionaryTrainer.Storage
 
         public virtual T Add(T item)
         {
-            this.allList.Add(item);
+            this.Items.Add(item);
             return item;
         }
 
@@ -44,7 +53,7 @@ namespace AnSoft.DictionaryTrainer.Storage
 
         public virtual bool Delete(T item)
         {
-            this.allList.Remove(item);
+            this.Items.Remove(item);
             return true;
         }
 
@@ -53,7 +62,7 @@ namespace AnSoft.DictionaryTrainer.Storage
             var serializer = new BinaryFormatter();
             using (var fileStream = new FileStream(this.Source, FileMode.OpenOrCreate))
             {
-                serializer.Serialize(fileStream, this.allList);
+                serializer.Serialize(fileStream, this.Items);
             }
         }
 
@@ -64,8 +73,7 @@ namespace AnSoft.DictionaryTrainer.Storage
                 var serializer = new BinaryFormatter();
                 using (var fileStream = new FileStream(this.Source, FileMode.Open))
                 {
-                    this.allList = serializer.Deserialize(fileStream) as IList<T>;
-                    this.roAllList = new ReadOnlyCollection<T>(this.allList);
+                    this.Items = serializer.Deserialize(fileStream) as IList<T>;
                 }
                 FileInfo f = new FileInfo(this.Source);
                 File.Copy(this.Source, String.Format("{0}\\{1}.dat", f.Directory, f.Name.Replace(".dat", "") + "_backup"), true);

@@ -45,7 +45,7 @@ namespace AnSoft.DictionaryTrainer.Storage
                 }
                 else
                 {
-                    this.allList.Add(item.Translations[i]);
+                    this.Items.Add(item.Translations[i]);
                 }
             }
         }
