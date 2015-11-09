@@ -30,7 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>AnSoft.pfx</AssemblyOriginatorKeyFile>
@@ -45,12 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseSavePointer.cs" />
+    <Compile Include="Infrastructure\BaseSavePointer.cs" />
     <Compile Include="Constants.cs" />
-    <Compile Include="DictionaryTrainerException.cs" />
-    <Compile Include="Entity.cs" />
-    <Compile Include="ISavePointable.cs" />
-    <Compile Include="ISavePointer.cs" />
+    <Compile Include="Infrastructure\DictionaryTrainerException.cs" />
+    <Compile Include="Infrastructure\Entity.cs" />
+    <Compile Include="Infrastructure\ISavePointable.cs" />
+    <Compile Include="Infrastructure\ISavePointer.cs" />
     <Compile Include="IScheduleBuilder.cs" />
     <Compile Include="IStorage.cs" />
     <Compile Include="IWordSessionProvider.cs" />
@@ -59,7 +59,7 @@
     <Compile Include="LearningSession.cs" />
     <Compile Include="LearningWord.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SavePointEntity.cs" />
+    <Compile Include="Infrastructure\SavePointEntity.cs" />
     <Compile Include="ScheduleBuilder.cs" />
     <Compile Include="ScheduleItem.cs" />
     <Compile Include="Trainer.cs" />

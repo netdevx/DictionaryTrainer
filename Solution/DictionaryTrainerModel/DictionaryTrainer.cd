@@ -154,7 +154,7 @@
     <Position X="11.75" Y="2.25" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAgAAAgAAAAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
-      <FileName>Entity.cs</FileName>
+      <FileName>Infrastructure\Entity.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="1.137" />
   </Class>
@@ -166,8 +166,7 @@
     </Compartments>
     <TypeIdentifier>
       <HashCode>EAAAABAAAAAAAAQAQAAAAEAAAAAAAAAAAAAAAIAAIBA=</HashCode>
-      <FileName>BaseSavePointer.cs</FileName>
-      <NewMemberFileName>SavePointEntity.cs</NewMemberFileName>
+      <FileName>Infrastructure\BaseSavePointer.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
@@ -184,7 +183,7 @@
     </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAABAAAAAAAAQIQAAAAEAAAAAAAAAAAAAAAIAAIBA=</HashCode>
-      <FileName>SavePointEntity.cs</FileName>
+      <FileName>Infrastructure\SavePointEntity.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="1.148" />
   </Class>
@@ -213,7 +212,7 @@
     <Position X="10" Y="7.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>ISavePointable.cs</FileName>
+      <FileName>Infrastructure\ISavePointable.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="SavePointer" />
@@ -223,7 +222,7 @@
     <Position X="12.75" Y="7.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAQAQAAAAEAAAAAAAAAAAAAAAIAAAAA=</HashCode>
-      <FileName>ISavePointer.cs</FileName>
+      <FileName>Infrastructure\ISavePointer.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="AnSoft.DictionaryTrainer.Model.IWordSessionProvider">
