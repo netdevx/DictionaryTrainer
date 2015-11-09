@@ -15,6 +15,10 @@ namespace AnSoft.DictionaryTrainer.Model
 
         public Word Word { get; set; }
 
+        public int TimesToShow { get; set; }
+
+        public string Answer { get; set; }
+
         public string AllTranslations
         {
             get
@@ -22,9 +26,5 @@ namespace AnSoft.DictionaryTrainer.Model
                 return String.Join(", ", this.Word.Translations.Select(t => t.Spelling));
             }
         }
-
-        public int TimesToShow { get; set; }
-
-        public string Answer { get; set; }
     }
 }

@@ -9,6 +9,9 @@ namespace AnSoft.DictionaryTrainer.Model
     [Serializable]
     public abstract class SavePointEntity<TEntity> : Entity, ISavePointer, ICloneable where TEntity : SavePointEntity<TEntity>
     {
+        [NonSerialized]
+        private TEntity savePoint;
+
         public abstract void CopyTo(TEntity copy);
 
         public TEntity Clone()
@@ -23,9 +26,6 @@ namespace AnSoft.DictionaryTrainer.Model
         {
             return this.Clone();
         }
-
-        [NonSerialized]
-        private TEntity savePoint;
 
         public void MakeSavePoint()
         {

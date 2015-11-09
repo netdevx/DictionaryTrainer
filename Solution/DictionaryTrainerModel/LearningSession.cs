@@ -49,6 +49,10 @@ namespace AnSoft.DictionaryTrainer.Model
             get { return this.CurrentItem != null ? this.CurrentItem.Value : null; }
         }
 
+        public virtual DateTime StartTime { get; protected set; }
+
+        public virtual DateTime FinishTime { get; protected set; }
+
         public NextResult Next()
         {
             if (String.Equals(this.CurrentWord.Word.Spelling, this.CurrentWord.Answer, StringComparison.CurrentCultureIgnoreCase))
@@ -91,10 +95,6 @@ namespace AnSoft.DictionaryTrainer.Model
                 }
             }
         }
-
-        public virtual DateTime StartTime { get; protected set; }
-
-        public virtual DateTime FinishTime { get; protected set; }
 
         public event Action<LearningSession> OnFinish;
 
