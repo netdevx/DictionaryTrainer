@@ -67,27 +67,6 @@ namespace AnSoft.DictionaryTrainer.WinApp
         }
     }
 
-    public class IntToBoolConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter,
-            System.Globalization.CultureInfo culture)
-        {
-            if ((string)value == "1")
-                return true;
-            else
-                return false;
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter,
-            System.Globalization.CultureInfo culture)
-        {
-            if ((bool)value)
-                return "1";
-            else
-                return "0";
-        }
-    }
-
     public class InverseEmptyToBoolConvertor : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter,
@@ -164,61 +143,6 @@ namespace AnSoft.DictionaryTrainer.WinApp
             System.Globalization.CultureInfo culture)
         {
             if (value != null)
-                return Visibility.Collapsed;
-            else
-                return Visibility.Visible;
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter,
-            System.Globalization.CultureInfo culture)
-        {
-            return null;
-        }
-    }
-
-    public class EnumToBoolConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter,
-            System.Globalization.CultureInfo culture)
-        {
-            return (Enum.GetName(value.GetType(), value) == parameter.ToString());
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter,
-            System.Globalization.CultureInfo culture)
-        {
-            if (Enum.GetNames(targetType).Contains(parameter.ToString()))
-            {
-                return Enum.Parse(targetType, parameter.ToString());
-            }
-            return null;
-        }
-    }
-
-    public class EnumToVisibleConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter,
-            System.Globalization.CultureInfo culture)
-        {
-            if (Enum.GetName(value.GetType(), value) == parameter.ToString())
-                return Visibility.Visible;
-            else
-                return Visibility.Collapsed;
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter,
-            System.Globalization.CultureInfo culture)
-        {
-            return null;
-        }
-    }
-
-    public class InverseEnumToVisibleConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter,
-            System.Globalization.CultureInfo culture)
-        {
-            if (Enum.GetName(value.GetType(), value) == parameter.ToString())
                 return Visibility.Collapsed;
             else
                 return Visibility.Visible;
