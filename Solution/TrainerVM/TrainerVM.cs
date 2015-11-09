@@ -170,8 +170,7 @@ namespace AnSoft.DictionaryTrainer.ViewModel
             word = word as Word;
             if (word != null)
             {
-                var mainVM = DIContainer.Instance.Get<MainVM>();
-                mainVM.OpenEditorCmd.Execute(word);
+                MainVM.Instance.OpenEditorCmd.Execute(word);
             }
         }
 

@@ -78,7 +78,7 @@ namespace AnSoft.DictionaryTrainer.ViewModel
         public ICommand DeleteWordCmd { get; protected set; }
         private void DeleteWord(object parameter)
         {
-            DIContainer.Instance.Get<MainVM>().WordStorage.Delete(SelectedWord);
+            MainVM.Instance.WordStorage.Delete(SelectedWord);
             this.Words.Remove(SelectedWord);
         }
 
