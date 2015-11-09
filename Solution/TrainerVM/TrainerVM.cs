@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Ninject;
 
 using AnSoft.DictionaryTrainer.Model;
 
@@ -16,16 +17,9 @@ namespace AnSoft.DictionaryTrainer.ViewModel
 {
     public class TrainerVM : INotifyPropertyChanged
     {
-        public MainVM MainVM { get; protected set; }
-
-        private Trainer trainer;
-
-        private Timer repetitionTimer;
-
-        public TrainerVM(MainVM mainVM)
+        public TrainerVM(Trainer trainer)
         {
-            this.MainVM = mainVM;
-            this.trainer = DIContainer.Instance.Get<Trainer>();
+            this.trainer = trainer;
 
             this.StartNewLearningCmd = new Command(StartNewLearning);
             this.StartRepetitionCmd = new Command(StartRepetition);
@@ -43,13 +37,9 @@ namespace AnSoft.DictionaryTrainer.ViewModel
             , null, 0, 15 * 1000);
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        private Trainer trainer;
 
-        public void RaisePropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
+        private Timer repetitionTimer;
 
         private ReadOnlyObservableCollection<SessionWord> newWords;
         public ReadOnlyObservableCollection<SessionWord> NewWords
@@ -180,7 +170,8 @@ namespace AnSoft.DictionaryTrainer.ViewModel
             word = word as Word;
             if (word != null)
             {
-                this.MainVM.OpenEditorCmd.Execute(word);
+                var mainVM = DIContainer.Instance.Get<MainVM>();
+                mainVM.OpenEditorCmd.Execute(word);
             }
         }
 
@@ -191,6 +182,14 @@ namespace AnSoft.DictionaryTrainer.ViewModel
             this.IsWrongAnswer = false;
             this.CurrentWord = null;
             this.NewWords = null;
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void RaisePropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

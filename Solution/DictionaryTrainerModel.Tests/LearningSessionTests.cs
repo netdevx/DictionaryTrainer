@@ -43,7 +43,7 @@ namespace DictionaryTrainerModel.Tests
         [TestMethod]
         public void Constructor()
         {
-            var session = new LearningSession(this.words, this.words);
+            var session = new LearningSession(this.words, this.words, 1);
 
             MyAssertions.CollectionAssert(this.words, session.Items, (e, a) => e.ID == a.Word.ID);
             Assert.AreEqual(this.words[0].ID, session.CurrentWord.Word.ID);
@@ -54,7 +54,7 @@ namespace DictionaryTrainerModel.Tests
         [TestMethod]
         public void NextCorrect()
         {
-            var session = new LearningSession(this.words, this.words);
+            var session = new LearningSession(this.words, this.words, 1);
 
             session.CurrentWord.Answer = "one";
             var actual = session.Next();
@@ -67,7 +67,7 @@ namespace DictionaryTrainerModel.Tests
         [TestMethod]
         public void NextWrong()
         {
-            var session = new LearningSession(this.words, this.words);
+            var session = new LearningSession(this.words, this.words, 1);
 
             session.CurrentWord.Answer = "two";
             var actual = session.Next();
@@ -82,7 +82,7 @@ namespace DictionaryTrainerModel.Tests
         [TestMethod]
         public void NextExpactedOtherVariant()
         {
-            var session = new LearningSession(this.words, this.words);
+            var session = new LearningSession(this.words, this.words, 1);
 
             session.CurrentWord.Answer = "one";
             session.Next();
@@ -102,7 +102,7 @@ namespace DictionaryTrainerModel.Tests
         [TestMethod]
         public void NextFinished()
         {
-            var session = new LearningSession(this.words, this.words);
+            var session = new LearningSession(this.words, this.words, 1);
             bool isFinished = false;
             session.OnFinish += (s) => isFinished = true;
 
@@ -124,7 +124,7 @@ namespace DictionaryTrainerModel.Tests
         [TestMethod]
         public void NextCycling()
         {
-            var session = new LearningSession(this.words, this.words);
+            var session = new LearningSession(this.words, this.words, 1);
 
             session.CurrentWord.Answer = "on";
             session.Next();

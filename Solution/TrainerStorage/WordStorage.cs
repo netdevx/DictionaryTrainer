@@ -54,7 +54,7 @@ namespace AnSoft.DictionaryTrainer.Storage
         {
             this.ThrowExceptionIfWordExists(item);
 
-            this.ReplaceTranslationRepetitions(item);
+            this.ReplaceTranslationRepetitions(item);            
             return base.Update(item);
         }
 
@@ -70,6 +70,7 @@ namespace AnSoft.DictionaryTrainer.Storage
             foreach (var w in this.AllList)
                 if (w.SavePointer.IsSavePoint)
                     w.SavePointer.DeleteSavePoint();
+            
             base.Save();
         }
     }

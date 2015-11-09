@@ -61,7 +61,7 @@ namespace DictionaryTrainerModel.Tests
         [TestMethod]
         public void StartNewLearning()
         {
-            var trainer = new Trainer(wordStorage.Object, wordResultStorage.Object, Language.En, provider.Object, scheduleBuilder.Object);
+            var trainer = new Trainer(wordStorage.Object, wordResultStorage.Object, Language.En, provider.Object, scheduleBuilder.Object, 1);
 
             trainer.StartNewLearning();
 
@@ -72,7 +72,7 @@ namespace DictionaryTrainerModel.Tests
         [TestMethod]
         public void StartRepetition()
         {
-            var trainer = new Trainer(wordStorage.Object, wordResultStorage.Object, Language.En, provider.Object, scheduleBuilder.Object);
+            var trainer = new Trainer(wordStorage.Object, wordResultStorage.Object, Language.En, provider.Object, scheduleBuilder.Object, 1);
 
             trainer.StartRepetition();
 
@@ -122,12 +122,12 @@ namespace DictionaryTrainerModel.Tests
 
     public class Session4Test: LearningSession
     {
-        public Session4Test(): base(new List<Word>(), new List<Word>()) { }
+        public Session4Test(): base(new List<Word>(), new List<Word>(), 1) { }
     }
     
     public class Trainer4Test: Trainer
     {
-        public Trainer4Test(IWordStorage wordStorage, IStorage<WordResult> wordResultStorage, Language language, IWordSessionProvider wordSessionProvider, IScheduleBuilder scheduleBuilder) : base(wordStorage, wordResultStorage, language, wordSessionProvider, scheduleBuilder) { }
+        public Trainer4Test(IWordStorage wordStorage, IStorage<WordResult> wordResultStorage, Language language, IWordSessionProvider wordSessionProvider, IScheduleBuilder scheduleBuilder) : base(wordStorage, wordResultStorage, language, wordSessionProvider, scheduleBuilder, 1) { }
         
         public void UpdateScheduleTest(LearningSession session)
         {

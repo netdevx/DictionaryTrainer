@@ -13,13 +13,12 @@ using AnSoft.DictionaryTrainer.Model;
 namespace AnSoft.DictionaryTrainer.ViewModel
 {
     public class WordEditorVM : INotifyPropertyChanged
-    {
-        public DictionaryEditorVM DictionaryEditorVM { get; protected set; }
-        
+    {        
         public WordEditorVM(DictionaryEditorVM parentVM, Word word)
         {
             this.Word = word;
             this.DictionaryEditorVM = parentVM;
+            this.wordStorage = DIContainer.Instance.Get<IWordStorage>();
 
             if (this.Word == null)
             {
@@ -44,20 +43,9 @@ namespace AnSoft.DictionaryTrainer.ViewModel
             this.CancelCmd = new Command(Cancel);
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public DictionaryEditorVM DictionaryEditorVM { get; protected set; }
 
-        public void RaisePropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        public void FullRefresh()
-        {
-            var temp = this.Word;
-            this.Word = null;
-            this.Word = temp;
-        }
+        private IWordStorage wordStorage;
 
         private bool isNewWord = false;
 
@@ -119,27 +107,20 @@ namespace AnSoft.DictionaryTrainer.ViewModel
             }
         }
 
-        public event EventHandler OnClosed;
-        private void RaiseOnClosed()
-        {
-            if (OnClosed != null)
-                OnClosed(this, EventArgs.Empty);
-        }
-
         public ICommand SaveCmd { get; protected set; }
         private void Save(object parameter)
         {
             this.IsWordExists = false;
-            if (!this.DictionaryEditorVM.MainVM.WordStorage.IsWordAlreadyExists(this.Word))
+            if (!this.wordStorage.IsWordAlreadyExists(this.Word))
             {
                 this.Word.SavePointer.DeleteSavePoint();
                 if (isNewWord)
                 {
                     this.DictionaryEditorVM.Words.Add(this.Word);
-                    this.DictionaryEditorVM.MainVM.WordStorage.Add(this.Word);
+                    this.wordStorage.Add(this.Word);
                 }
                 else
-                    this.DictionaryEditorVM.MainVM.WordStorage.Update(this.Word);
+                    this.wordStorage.Update(this.Word);
                 this.RaiseOnClosed();
             }
             else
@@ -248,6 +229,28 @@ namespace AnSoft.DictionaryTrainer.ViewModel
                 this.FullRefresh();
                 this.SelectedTranslationIndex = index;
             }
+        }
+
+        public event EventHandler OnClosed;
+        private void RaiseOnClosed()
+        {
+            if (OnClosed != null)
+                OnClosed(this, EventArgs.Empty);
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void RaisePropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public void FullRefresh()
+        {
+            var temp = this.Word;
+            this.Word = null;
+            this.Word = temp;
         }
     }
 }

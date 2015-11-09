@@ -41,7 +41,7 @@ namespace AnSoft.DictionaryTrainer.WinApp
             this.Close();
         }
 
-        void ViewModel_OnOpenEditor(object sender, MainVM.ViewModelArgs e)
+        void ViewModel_OnOpenEditor(object sender, ViewModelArgs e)
         {
             var wordEditor = new WordEditor(e.ViewModel as WordEditorVM);
             wordEditor.ShowDialog();

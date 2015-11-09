@@ -19,13 +19,8 @@ namespace DictionaryTrainerModel.Tests
             var builder = new ScheduleBuilder();
             var actual = builder.GetSchedule(startDate).ToList();
 
-            for (int i = 0; i <= actual.Count - 1; i++)
-            {
-                var expected = new ScheduleItem() { DateToShow = startDate.AddHours(forgettingCurveInHours[i]), IsShown = false, IsSuccessful = false };
-                Assert.AreEqual(expected.DateToShow, actual[i].DateToShow);
-                Assert.AreEqual(expected.IsShown, actual[i].IsShown);
-                Assert.AreEqual(expected.IsSuccessful, actual[i].IsSuccessful);
-            }
+            var ex = forgettingCurveInHours.Select(x => new ScheduleItem() { DateToShow = startDate.AddHours(x), IsShown = false, IsSuccessful = false }).ToList();
+            MyAssertions.CollectionAssert(ex, actual, (e, a) => e.DateToShow == a.DateToShow && e.IsShown == a.IsShown && e.IsSuccessful == a.IsSuccessful);            
         }
     }
 }

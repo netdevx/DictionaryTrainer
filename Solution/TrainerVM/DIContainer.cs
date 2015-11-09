@@ -14,6 +14,12 @@ namespace AnSoft.DictionaryTrainer.ViewModel
 {
     public class DIContainer: StandardKernel
     {
+        protected DIContainer()
+            : base()
+        {
+            this.RegisterDependencies();
+        }
+
         private static DIContainer instance;
         public static DIContainer Instance
         {
@@ -26,16 +32,20 @@ namespace AnSoft.DictionaryTrainer.ViewModel
             }
         }
         
-        protected DIContainer(): base()
-        {
-            this.RegisterDependencies();
-        }
-
         protected void RegisterDependencies()
         {
-            this.Bind<Trainer>().To<Trainer>().WithConstructorArgument("language", Language.En);
-            this.Bind<IWordStorage>().To<WordStorage>().WithConstructorArgument<string>("c:\\tmp\\dictionary.dat");
-            this.Bind<IStorage<WordResult>>().To<WordResultStorage>().WithConstructorArgument<string>("results.dat");
+            string pathToStorageFiles = ConfigurationManager.AppSettings["pathToStorageFiles"];
+            if (pathToStorageFiles != null && !pathToStorageFiles.EndsWith("\\"))
+                pathToStorageFiles = pathToStorageFiles + "\\";
+            string wordStorageFileName = String.Format("{0}{1}", pathToStorageFiles, Constants.wordStorageFileName);
+            string wordResultStorageFileName = String.Format("{0}{1}", pathToStorageFiles, Constants.wordResultStorageFileName);
+            
+            this.Bind<IWordStorage>().ToConstant<WordStorage>(new WordStorage(wordStorageFileName));
+            this.Bind<IStorage<WordResult>>().ToConstant<WordResultStorage>(new WordResultStorage(wordResultStorageFileName));
+
+            int penaltyRepetitionCount = 2;
+            Int32.TryParse(ConfigurationManager.AppSettings["penaltyRepetittionCount"], out penaltyRepetitionCount);
+            this.Bind<Trainer>().To<Trainer>().WithConstructorArgument("language", Language.En).WithConstructorArgument("penaltyRepetitionCount", penaltyRepetitionCount);
 
             int sessionWordCount = 10;
             byte customWordPercent = 50;
@@ -44,9 +54,11 @@ namespace AnSoft.DictionaryTrainer.ViewModel
 
             this.Bind<IWordSessionProvider>().To<WordSessionProvider>()
                 .WithConstructorArgument("sessionWordCount", sessionWordCount)
-                .WithConstructorArgument("customWordPercent", customWordPercent);
-            
+                .WithConstructorArgument("customWordPercent", customWordPercent);            
             this.Bind<IScheduleBuilder>().To<ScheduleBuilder>();
+            
+            this.Bind<TrainerVM>().To<TrainerVM>();
+            this.Bind<MainVM>().To<MainVM>().InSingletonScope();
         }
 
         public T Get<T>()

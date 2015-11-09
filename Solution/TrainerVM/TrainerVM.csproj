@@ -49,6 +49,7 @@
     <Compile Include="MainVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TrainerVM.cs" />
+    <Compile Include="ViewModelArgs.cs" />
     <Compile Include="WordEditorVM.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -13,21 +13,11 @@ using AnSoft.DictionaryTrainer.Model;
 
 namespace AnSoft.DictionaryTrainer.ViewModel
 {
-    public class DictionaryEditorVM//: INotifyPropertyChanged
+    public class DictionaryEditorVM
     {
-        //public event PropertyChangedEventHandler PropertyChanged;
-
-        //public void RaisePropertyChanged(string propertyName)
-        //{
-        //    if (PropertyChanged != null)
-        //        PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        //}
-
-        public MainVM MainVM { get; protected set; }
-
-        public DictionaryEditorVM(MainVM mainVM, Word word = null)
+        public DictionaryEditorVM(Word word = null)
         {
-            this.MainVM = mainVM;
+            this.WordStorage = DIContainer.Instance.Get<IWordStorage>();
 
             this.SaveCmd = new Command(Save);
             this.CancelCmd = new Command(Cancel);
@@ -35,19 +25,14 @@ namespace AnSoft.DictionaryTrainer.ViewModel
             this.EditWordCmd = new Command(EditWord);
             this.DeleteWordCmd = new Command(DeleteWord);
             
-            this.MainVM.WordStorage.Reopen();
-            this.Words = new ObservableCollection<Word>(this.MainVM.WordStorage.GetWordsByLanguage(Language.En));
+            this.WordStorage.Reopen();
+            this.Words = new ObservableCollection<Word>(this.WordStorage.GetWordsByLanguage(Language.En));
 
             if (word != null)
                 this.GoToWord(word);
         }
 
-        private void GoToWord(Word word)
-        {
-            var wordToSelect = this.Words.FirstOrDefault(w => w.ID == word.ID);
-            if (wordToSelect != null)
-                this.SelectedWord = wordToSelect;
-        }
+        private IWordStorage WordStorage;
 
         public ObservableCollection<Word> Words { get; protected set; }
 
@@ -65,29 +50,15 @@ namespace AnSoft.DictionaryTrainer.ViewModel
         public ICommand SaveCmd { get; protected set; }
         private void Save(object parameter)
         {
-            this.MainVM.WordStorage.Save();
+            this.WordStorage.Save();
             this.RaiseOnClose();
         }
 
         public ICommand CancelCmd { get; protected set; }
         private void Cancel(object parameter)
         {
-            this.MainVM.WordStorage.Reopen();
+            this.WordStorage.Reopen();
             this.RaiseOnClose();
-        }
-
-        public event EventHandler OnClose;
-        public void RaiseOnClose()
-        {
-            if (OnClose != null)
-                OnClose(this, EventArgs.Empty);
-        }
-
-        public event EventHandler<MainVM.ViewModelArgs> OnOpenEditor;
-        public void RaiseOnOpenEditor(WordEditorVM editorVM)
-        {
-            if (OnOpenEditor != null)
-                OnOpenEditor(this, new MainVM.ViewModelArgs() { ViewModel = editorVM } );
         }
 
         public ICommand AddWordCmd { get; protected set; }
@@ -107,8 +78,29 @@ namespace AnSoft.DictionaryTrainer.ViewModel
         public ICommand DeleteWordCmd { get; protected set; }
         private void DeleteWord(object parameter)
         {
-            this.MainVM.WordStorage.Delete(SelectedWord);
+            DIContainer.Instance.Get<MainVM>().WordStorage.Delete(SelectedWord);
             this.Words.Remove(SelectedWord);
+        }
+
+        public event EventHandler OnClose;
+        public void RaiseOnClose()
+        {
+            if (OnClose != null)
+                OnClose(this, EventArgs.Empty);
+        }
+
+        public event EventHandler<ViewModelArgs> OnOpenEditor;
+        public void RaiseOnOpenEditor(WordEditorVM editorVM)
+        {
+            if (OnOpenEditor != null)
+                OnOpenEditor(this, new ViewModelArgs() { ViewModel = editorVM });
+        }
+
+        private void GoToWord(Word word)
+        {
+            var wordToSelect = this.Words.FirstOrDefault(w => w.ID == word.ID);
+            if (wordToSelect != null)
+                this.SelectedWord = wordToSelect;
         }
     }
 }

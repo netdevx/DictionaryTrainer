@@ -29,8 +29,8 @@ namespace AnSoft.DictionaryTrainer.WinApp
         public MainWindow()
         {
             InitializeComponent();
-            
-            this.MainVM = new MainVM();
+
+            this.MainVM = DIContainer.Instance.Get<MainVM>();
             this.MainVM.OnExitApp += ExitAppHandler;
             this.MainVM.OnOpenEditor += ShowEditorHandler;
             
@@ -42,7 +42,7 @@ namespace AnSoft.DictionaryTrainer.WinApp
             Application.Current.Shutdown();
         }
 
-        private void ShowEditorHandler(object sender, MainVM.ViewModelArgs e)
+        private void ShowEditorHandler(object sender, ViewModelArgs e)
         {
             var editor = new DictionaryEditor(e.ViewModel);
             editor.ShowDialog();

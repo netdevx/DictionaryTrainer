@@ -6,23 +6,18 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 
 using AnSoft.DictionaryTrainer.Model;
+using Ninject;
 
 namespace AnSoft.DictionaryTrainer.ViewModel
 {
     public class MainVM
     {
-        public IWordStorage WordStorage { get; protected set; }
-        
-        public IStorage<WordResult> WordResultStorage { get; protected set; }
-
-        public TrainerVM TrainerVM { get; protected set; }
-
-        public MainVM()
+        public MainVM(IWordStorage wordStorage, IStorage<WordResult> wordResultStorage, TrainerVM trainerVM)
         {
-            this.WordStorage = DIContainer.Instance.Get<IWordStorage>();
-            this.WordResultStorage = DIContainer.Instance.Get<IStorage<WordResult>>();
+            this.WordStorage = wordStorage;
+            this.WordResultStorage = wordResultStorage;
 
-            this.TrainerVM = new TrainerVM(this);
+            this.TrainerVM = trainerVM;
 
             this.Exit = new Command((o) => 
             {
@@ -33,24 +28,24 @@ namespace AnSoft.DictionaryTrainer.ViewModel
             this.OpenEditorCmd = new Command(this.OpenEditor);
         }
 
-        public event EventHandler OnExitApp;
+        public IWordStorage WordStorage { get; protected set; }
+        public IStorage<WordResult> WordResultStorage { get; protected set; }
 
-        public event EventHandler<ViewModelArgs> OnOpenEditor;
+        public TrainerVM TrainerVM { get; protected set; }
 
         public ICommand Exit { get; protected set; }
 
         public ICommand OpenEditorCmd { get; protected set; }
         private void OpenEditor(object word)
         {
-            var vm = new DictionaryEditorVM(this, word as Word);
+            var vm = new DictionaryEditorVM(word as Word);
             
             if (this.OnOpenEditor != null)
                 this.OnOpenEditor(this, new ViewModelArgs() { ViewModel = vm });
         }
 
-        public class ViewModelArgs: EventArgs
-        {
-            public object ViewModel { get; set; }
-        }
+        public event EventHandler OnExitApp;
+
+        public event EventHandler<ViewModelArgs> OnOpenEditor;
     }
 }
