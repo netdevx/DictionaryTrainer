@@ -140,16 +140,6 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="AnSoft.DictionaryTrainer.Model.WordsBaseParser">
-    <Position X="0.5" Y="9.75" Width="2" />
-    <Compartments>
-      <Compartment Name="Private" Collapsed="true" />
-    </Compartments>
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAQAAAAAAACAAA=</HashCode>
-      <FileName>WordsBaseParser.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="AnSoft.DictionaryTrainer.Model.Entity">
     <Position X="11.75" Y="2.25" Width="2" />
     <TypeIdentifier>
