@@ -65,7 +65,7 @@ namespace DictionaryTrainerModel.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ApplicationException))]
+        [ExpectedException(typeof(DictionaryTrainerException))]
         public void MakeSecondSavePoint()
         {
             var savePointer = new WordSavePointer(this.CreateWord());
