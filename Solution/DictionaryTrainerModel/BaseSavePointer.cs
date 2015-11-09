@@ -8,12 +8,14 @@ namespace AnSoft.DictionaryTrainer.Model
 {
     public abstract class BaseSavePointer<TEntity> : ISavePointer where TEntity : Entity
     {
-        public TEntity Entity { get; protected set; }
-
         public BaseSavePointer(TEntity entity)
         {
             this.Entity = entity;
         }
+
+        protected TEntity savePoint;
+
+        public TEntity Entity { get; protected set; }
 
         public abstract void CopyTo(TEntity source, TEntity copy);
 
@@ -29,8 +31,6 @@ namespace AnSoft.DictionaryTrainer.Model
         {
             return this.Clone(this.Entity);
         }
-
-        protected TEntity savePoint;
 
         public void MakeSavePoint()
         {

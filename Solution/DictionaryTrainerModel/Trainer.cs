@@ -8,19 +8,22 @@ namespace AnSoft.DictionaryTrainer.Model
 {
     public class Trainer
     {
-        private IWordStorage wordStorage;
-        private IStorage<WordResult> wordResultStorage;
-        private IWordSessionProvider wordSessionProvider;
-        private IScheduleBuilder scheduleBuilder;
-
-        public Trainer(IWordStorage wordStorage, IStorage<WordResult> wordResultStorage, Language language, IWordSessionProvider wordSessionProvider, IScheduleBuilder scheduleBuilder)
+        public Trainer(IWordStorage wordStorage, IStorage<WordResult> wordResultStorage, Language language, IWordSessionProvider wordSessionProvider, IScheduleBuilder scheduleBuilder, int penaltyRepetitionCount)
         {
             this.wordStorage = wordStorage;
             this.wordResultStorage = wordResultStorage;
             this.Language = language;
             this.wordSessionProvider = wordSessionProvider;
             this.scheduleBuilder = scheduleBuilder;
+            this.penaltyRepetitionCount = penaltyRepetitionCount;
         }
+
+        private IWordStorage wordStorage;
+        private IStorage<WordResult> wordResultStorage;
+        private IWordSessionProvider wordSessionProvider;
+        private IScheduleBuilder scheduleBuilder;
+
+        private int penaltyRepetitionCount;
 
         public Language Language { get; set; }
         public Language NativeLanguage { get; set; }
@@ -31,13 +34,13 @@ namespace AnSoft.DictionaryTrainer.Model
 
         public void StartNewLearning()
         {
-            this.Session = new LearningSession(wordSessionProvider.GetNextWords(this.Language), this.wordStorage.AllList);
+            this.Session = new LearningSession(wordSessionProvider.GetNextWords(this.Language), this.wordStorage.AllList, this.penaltyRepetitionCount);
             this.Session.OnFinish += UpdateSchedule;
         }
 
         public void StartRepetition()
         {
-            this.Session = new LearningSession(wordSessionProvider.GetWordsToRepeat(this.Language), this.wordStorage.AllList);
+            this.Session = new LearningSession(wordSessionProvider.GetWordsToRepeat(this.Language), this.wordStorage.AllList, this.penaltyRepetitionCount);
             this.Session.OnFinish += UpdateSchedule;
         }
 

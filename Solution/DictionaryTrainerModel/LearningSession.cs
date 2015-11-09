@@ -9,9 +9,10 @@ namespace AnSoft.DictionaryTrainer.Model
 {
     public class LearningSession
     {
-        public LearningSession(IEnumerable<Word> words, IEnumerable<Word> allWords)
+        public LearningSession(IEnumerable<Word> words, IEnumerable<Word> allWords, int penaltyRepetitionCount)
         {
             this.allWords = allWords;
+            this.penaltyRepetitionCount = penaltyRepetitionCount;
 
             var learningWords = words.Select(w => new SessionWord() { Word = w}).ToArray();
             
@@ -23,6 +24,8 @@ namespace AnSoft.DictionaryTrainer.Model
 
             this.StartTime = DateTime.Now;
         }
+
+        private int penaltyRepetitionCount;
 
         private IEnumerable<Word> allWords;
 
