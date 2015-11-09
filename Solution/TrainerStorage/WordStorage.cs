@@ -30,7 +30,7 @@ namespace AnSoft.DictionaryTrainer.Storage
         private void ThrowExceptionIfWordExists(Word item)
         {
             if (this.IsWordAlreadyExists(item))
-                throw new ApplicationException("The same word already exists in word base!");
+                throw new WordStorageException("The same word already exists in word base!");
         }
 
         private void ReplaceTranslationRepetitions(Word item)
@@ -66,7 +66,8 @@ namespace AnSoft.DictionaryTrainer.Storage
         public override void Save()
         {
             if (this.AllList.Any(word => this.AllList.Where(w => w != word && w.Language == word.Language && String.Equals(w.Spelling, word.Spelling, StringComparison.InvariantCultureIgnoreCase)).Any()))
-                throw new ApplicationException("There are some repetitions in word list within the same language! It's impossible to save changes!");
+                throw new WordStorageException("There are some repetitions in word list within the same language! It's impossible to save changes!");
+            
             foreach (var w in this.AllList)
                 if (w.SavePointer.IsSavePoint)
                     w.SavePointer.DeleteSavePoint();

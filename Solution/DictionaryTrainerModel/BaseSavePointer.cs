@@ -37,7 +37,7 @@ namespace AnSoft.DictionaryTrainer.Model
             if (savePoint == null)
                 this.savePoint = this.Clone();
             else
-                throw new ApplicationException("SavePoint already has been made for this object!");
+                throw new DictionaryTrainerException("SavePoint already has been made for this object!");
         }
 
         public void DeleteSavePoint()

@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="BaseSavePointer.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="DictionaryTrainerException.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="ISavePointable.cs" />
     <Compile Include="ISavePointer.cs" />

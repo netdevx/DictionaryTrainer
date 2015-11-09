@@ -43,6 +43,7 @@
     <Compile Include="Storage.cs" />
     <Compile Include="WordResultStorage.cs" />
     <Compile Include="WordStorage.cs" />
+    <Compile Include="WordStorageException.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DictionaryTrainerModel\DictionaryTrainerModel.csproj">
