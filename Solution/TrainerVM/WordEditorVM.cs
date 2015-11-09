@@ -22,8 +22,7 @@ namespace AnSoft.DictionaryTrainer.ViewModel
 
             if (this.Word == null)
             {
-                this.Word = new Word() { ID = Guid.NewGuid(), Language = Language.En };
-                //this.Word.Translations.Add(new Word() { ID = Guid.NewGuid(), Language = Language.Rus });
+                this.Word = new Word() { ID = Guid.NewGuid(), Language = MainVM.Instance.Language };
                 this.isNewWord = true;
             }
             else
@@ -149,7 +148,7 @@ namespace AnSoft.DictionaryTrainer.ViewModel
         {
             if (!String.IsNullOrEmpty(this.Translation))
             {
-                this.Word.Translations.Add(new Word() { ID = Guid.NewGuid(), Language = Language.Rus, Spelling = this.Translation });
+                this.Word.Translations.Add(new Word() { ID = Guid.NewGuid(), Language = MainVM.Instance.NativeLanguage, Spelling = this.Translation });
                 this.FullRefresh();
             }
         }

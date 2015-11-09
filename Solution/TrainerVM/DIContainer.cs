@@ -58,7 +58,8 @@ namespace AnSoft.DictionaryTrainer.ViewModel
             this.Bind<IScheduleBuilder>().To<ScheduleBuilder>();
             
             this.Bind<TrainerVM>().To<TrainerVM>();
-            this.Bind<MainVM>().To<MainVM>().InSingletonScope();
+            this.Bind<MainVM>().To<MainVM>().InSingletonScope()
+                .WithConstructorArgument("language", Language.En).WithConstructorArgument("nativeLanguage", Language.En);
         }
 
         public T Get<T>()

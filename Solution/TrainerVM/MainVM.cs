@@ -12,10 +12,13 @@ namespace AnSoft.DictionaryTrainer.ViewModel
 {
     public class MainVM
     {
-        public MainVM(IWordStorage wordStorage, IStorage<WordResult> wordResultStorage, TrainerVM trainerVM)
+        public MainVM(IWordStorage wordStorage, IStorage<WordResult> wordResultStorage, TrainerVM trainerVM, Language language, Language nativeLanguage)
         {
             this.WordStorage = wordStorage;
             this.WordResultStorage = wordResultStorage;
+
+            this.Language = language;
+            this.NativeLanguage = nativeLanguage;
 
             this.TrainerVM = trainerVM;
 
@@ -28,6 +31,17 @@ namespace AnSoft.DictionaryTrainer.ViewModel
             this.OpenEditorCmd = new Command(this.OpenEditor);
         }
 
+        public static MainVM Instance
+        {
+            get 
+            {
+                return DIContainer.Instance.Get<MainVM>();
+            }
+        }
+
+        public Language Language { get; protected set; }
+        public Language NativeLanguage { get; protected set; }
+        
         public IWordStorage WordStorage { get; protected set; }
         public IStorage<WordResult> WordResultStorage { get; protected set; }
 

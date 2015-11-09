@@ -26,7 +26,7 @@ namespace AnSoft.DictionaryTrainer.ViewModel
             this.DeleteWordCmd = new Command(DeleteWord);
             
             this.WordStorage.Reopen();
-            this.Words = new ObservableCollection<Word>(this.WordStorage.GetWordsByLanguage(Language.En));
+            this.Words = new ObservableCollection<Word>(this.WordStorage.GetWordsByLanguage(MainVM.Instance.Language));
 
             if (word != null)
                 this.GoToWord(word);
